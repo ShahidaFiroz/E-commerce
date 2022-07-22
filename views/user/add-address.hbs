@@ -1,0 +1,185 @@
+<div class="row mt-3 mx-3" style="margin-top:25px ;">
+  <div class="col-md-3">
+    <div style="margin-top: 50px; margin-left: 10px;" class="text-center">
+      <i id="animationDemo" data-mdb-animation="slide-right" data-mdb-toggle="animation"
+        data-mdb-animation-reset="true" data-mdb-animation-start="onScroll"
+        data-mdb-animation-on-scroll="repeat" class="fas fa-3x fa-shipping-fast text-white"></i>
+      <h3 class="mt-3 text-white">Welcome</h3>
+      <p class="white-text">You are 30 seconds away from compleating your order!</p>
+    </div>
+    <div class="text-center">
+        {{!-- <img src="https://i.pinimg.com/564x/46/94/75/4694751f3c024f43b4b6c8043bf6954c.jpg" alt="img" style="  width: -webkit-fill-available; margin-top: -100px;"> --}}
+      <button type="submit" class="btn btn-white btn-rounded back-button"></button>
+    </div>
+
+
+  </div>
+  <div class="col-md-9 justify-content-center">
+    <div class="card card-custom pb-4" style="margin-left: -30%; margin-top: 5%;">
+      <div class="card-body mt-0 mx-5">
+        <div class="text-center mb-3 pb-2 mt-3">
+          <h4 style="color: #4680b9 ;">Add Address</h4>
+        </div>
+
+        <form class="mb-0" method="post" action="/addaddress">
+
+          <div class="row mb-4">
+            <div class="col">
+              <div class="form">
+                <textarea name="address" id="address" class="form-control input-custom" cols="80" onkeyup="validateAddress()"></textarea>
+                <label class="form-label" for="form9Example1">Address</label>
+                 <span class="text-danger" id="addresserr"></span>
+               
+              </div>
+            </div>
+            <div class="col">
+              <div class="form">
+                <input type="text" name="place" id="place" class="form-control input-custom" onkeyup="validateplace()"/>
+                <label class="form-label" for="form9Example2">Place</label>
+                 <span class="text-danger" id="placeerr"></span>
+
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col">
+              <div class="form">
+                <input type="text" name="city" id="city" class="form-control input-custom" onkeyup="validatecity()"/>
+                <label class="form-label" for="form9Example3">City</label>
+                 <span class="text-danger" id="cityerr"></span>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form">
+                <input type="number" name="zip" id="zip" class="form-control input-custom" onkeyup="validatezip()"/>
+                <label class="form-label" for="form9Example4">Zip</label>
+                 <span class="text-danger" id="ziperr"></span>
+              </div>
+              <div class="bor8 bg0 m-b-22">
+										<input class="stext-111 cl8 plh3 size-90 p-lr-15 d-none" type="text" name="userId"  id="" value="{{userloged._id}}" >
+									</div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col">
+             
+            </div>
+            <div class="col">
+             
+            </div>
+          </div>
+
+          <div class="float-end ">
+            <!-- Submit button -->
+            <button type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" name="submit" value=""
+              style="background-color: #080808 ;margin-left: 44%; width:10%" onclick="return validation()">Save</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+ <style>
+    
+    .gradient-custom {
+
+background: -webkit-linear-gradient(left, #3931af, hsl(193, 100%, 50%));
+}
+
+.card-custom {
+border-bottom-left-radius: 10% 50%;
+border-top-left-radius: 10% 50%;
+background-color: #f8f9fa ;
+}
+
+
+.input-custom {
+background-color: white ;
+}
+
+.white-text {
+color: hsl(52, 0%, 98%);
+font-weight: 100 ;
+font-size: 14px;
+}
+
+.back-button {
+background-color: hsl(52, 0%, 98%);
+font-weight: 700;
+color: black ;
+margin-top: 50px ;
+}
+</style> 
+<script>
+  var errorName = document.getElementById('addresserr')
+  var errorPlace = document.getElementById('placeerr')
+  var errorCity = document.getElementById('cityerr')
+  var errorZip = document.getElementById('ziperr')
+
+
+ function validateAddress() {
+        const name = document.getElementById('address').value;
+        
+        if (name == "") {
+            errorName.innerHTML = 'Enter your Address'
+            return false
+        }
+        
+        errorName.innerHTML = null
+        return true
+
+    }
+    function validateplace() {
+        const name = document.getElementById('place').value
+        if (name == "") {
+            errorPlace.innerHTML = "Enter your place here"
+            return false
+
+
+        }
+      
+
+        errorPlace.innerHTML = null
+        return true
+    }
+     function validatecity() {
+        const name = document.getElementById('city').value
+        if (name == "") {
+            errorCity.innerHTML = "Enter your city"
+            return false
+
+
+        }
+       
+
+        errorCity.innerHTML = null
+        return true
+    }
+
+    function validatezip() {
+        const name = document.getElementById('zip').value
+        if (name == "") {
+            errorZip.innerHTML = "Enter your Pincode here"
+            return false
+        }
+         if (name.length < 6) {
+            errorZip.innerHTML = "Should be 6 digits"
+            return false
+        }
+      
+        errorZip.innerHTML = null
+        return true
+    }
+
+
+
+
+    function validation() {
+        if (!validateAddress()||!validateplace() || !validatecity()||!validatezip()) {
+            return false
+        }
+        return true
+    }
+
+</script>

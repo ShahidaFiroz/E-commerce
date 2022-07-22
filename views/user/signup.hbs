@@ -1,0 +1,167 @@
+
+
+
+    <div id="login">
+        <h3 class="text-center text-white pt-5"></h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="/signup" method="post">
+                            <h3 class="text-center text-dark">Register</h3>
+                                <div style="height: 30px;"> 
+                                    {{#if signUpErr}} 
+                                    <h5 class="text-danger" style="text-align:center ;">{{signUpErr}}</h5>
+                                     {{/if}}   
+                                     
+
+                            <div class="form-group mt-3">
+                                <label for="email" class="">Email:</label><br>
+                                <input type="email" name="email" id="emailId" class="form-control" onkeyup="validEmail()">
+                                 <span class="text-danger" id="emailerr"></span>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="username" class="">Username:</label><br>
+                                <input type="text" name="username" id="username" class="form-control" onkeyup="validateName()">
+                                <span class="text-danger" id="nameerr"></span>
+                            </div>
+                               <div class="form-group mt-3">
+                                <label for="phonenumber" class="">Phone number:</label><br>
+                                <input type="number" name="phone" id="phone" class="form-control" onkeyup="validphone()">
+                                 <span id="phoneerr" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="password" class="">Create password:</label><br>
+                                <input type="password" name="password" id="password" class="form-control" onkeyup="validPassowrd()">
+                                 <span id="passworderr" class="text-danger"></span>
+                            </div>
+                         
+                             <div class="form-group mt-3">
+                                <label for="password" class="" >Re-enter password: </label><br>
+                                <input type="password"  name="confirm_password" id="repassword" class="form-control" onkeyup="validconfirmPassowrd()">
+                             <span id="confirmpassworderr" class="text-danger"></span>
+                             <span id="errall" class="text-danger"></span>
+                            </div>
+                               <span id="passworderr" class="text-danger"> 
+                                        {{!-- {{#if signUpErr}}
+                                        <p class="text-danger">{{signUpErr}}</p>
+                                        {{/if}}   --}}
+                           
+                            <div class="form-group mt-3">
+                                <label for="remember-me" class="text-primary"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                <button  type="submit" name="submit" class="btn btn-info btn-md mt-3" value="" onclick="return validation()">Register</button>
+                            </div>
+
+
+                            <div id="register-link" class="text-right mt-3">
+                                <a href="/login" class="text-success">Already a user? SignUp here</a>
+                            </div>
+                        </form>
+                
+                        
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    var errorName = document.getElementById('nameerr')
+    var errorEmail = document.getElementById('emailerr')
+    var errorPassword = document.getElementById('passworderr')
+    var errorconPassword = document.getElementById('confirmpassworderr')
+     var errorphone = document.getElementById('phoneerr')
+    //var errorall=document.getElementById('errall')
+   
+
+
+
+
+
+    function validateName() {
+        const name = document.getElementById('username').value;
+        
+        if (name == "") {
+            errorName.innerHTML = 'Enter your Name'
+            return false
+        }
+        if (!name.match(/^[a-zA-Z]*$/)) {
+            errorName.innerHTML = 'Alphabets are only allowed'
+            return false
+        }
+        errorName.innerHTML = null
+        return true
+
+    }
+    function validEmail() {
+        const name = document.getElementById('emailId').value
+        if (name == "") {
+            errorEmail.innerHTML = "Enter your email address"
+            return false
+
+
+        }
+        if (!name.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)) {
+            errorEmail.innerHTML = 'Enter a proper email adress'
+            return false
+        }
+
+        errorEmail.innerHTML = null
+        return true
+    }
+     function validphone() {
+        const name = document.getElementById('phone').value
+        if (name == "") {
+            errorphone.innerHTML = "Enter your phone number"
+            return false
+
+
+        }
+        if (!name.match( /^\d{10}$/)) {
+            errorphone.innerHTML = 'Enter a proper phone number'
+            return false
+        }
+
+        errorphone.innerHTML = null
+        return true
+    }
+
+    function validPassowrd() {
+        const name = document.getElementById('password').value
+        if (name == "") {
+            errorPassword.innerHTML = "Enter a password"
+            return false
+        }
+        if (name.length < 8) {
+            errorPassword.innerHTML = "Password should be  eight characters"
+            return false
+        }
+        errorPassword.innerHTML = null
+        return true
+    }
+
+    function validconfirmPassowrd() {
+        const rename = document.getElementById('repassword').value
+         const name = document.getElementById('password').value
+        if (rename == "") {
+            errorPassword.innerHTML = "Enter password again"
+            return false
+        }
+        if (name!==rename) {
+            errorconPassword.innerHTML = "Password mismatched please check"
+            return false
+        }
+         
+        errorconPassword.innerHTML = null
+        return true
+    }
+
+
+
+    function validation() {
+        if (!validateName() || !validEmail() || !validPassowrd() || !validconfirmPassowrd()||!validphone()) {
+            return false
+        }
+        return true
+    }
+</script>

@@ -1,0 +1,63 @@
+
+
+ <div class="px-4 py-5" style="
+    margin-top: -44px">
+    <div style="margin-top: 2%;">
+            <h5 class="text-muted mb-0" >Thanks for your Order, <span style="color: #10010c;">{{user.username}}</span>!</h5>
+          </div>
+          </div>
+
+<table class="table" style="padding-top: 10%;">
+  <thead class="thead-dark" style="background-color:black;">
+
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Address Details</th>
+      <th scope="col">Pincode</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Product Name</th>
+      
+      <th scope="col">Total Price</th>
+      <th scope="col">Payment Method</th>
+      <th scope="col">Date</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each address}}
+    <tr>
+      {{!-- <th scope="row">{{@index}}</th> --}}
+      <td scope="row" class="pt-4">{{inc @index}}</td>
+      {{#each addresses}}
+      <td>{{this.address}},{{this.place}}<br>{{this.city}}</td>
+      <td>{{this.zip}}</td>
+      
+      {{/each}}
+      {{#each userphone}}
+      <td>{{this.phone}}</td>
+      {{/each}}
+      
+
+      <td>{{#each product}}
+        <div class="prname" style="margin-bottom: 3px;">
+        {{this.Name}}
+      </div>
+      {{/each}}
+      </td>
+
+      <td>{{this.totalAmount}}</td>
+      <td>{{this.paymentMethod}}</td>
+      <td>{{this.date}}</td>
+      <td>{{this.status}}</td>
+      {{#ifCompare status 'Placed'}}
+      <td><a href="/cancel/{{this._id}}"  class="flex-c-m stext-101 cl0  bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" style="float: right;margin-right: 46%;width: 55%; height: 45px;">Cancel</a></td>
+      {{else}}
+       <td><a class="flex-c-m stext-101 cl0  bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" 
+       style="float: right;margin-right: 46%;width: 55%; height: 45px;">Cancelled</a></td>
+    {{/ifCompare}}
+    </tr>
+   {{/each}}
+  </tbody>
+</table>
+

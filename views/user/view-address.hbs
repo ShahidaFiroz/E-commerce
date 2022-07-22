@@ -1,0 +1,40 @@
+
+
+  <div class=" px-1 py-1">
+             <h5 style="margin-top: 1px;" >Your Address Details</h5> 
+             <div style="height:107%;width:73%">
+            <a href="/addaddress" class="flex-c-m stext-50 cl0 bg3 bor14 hov-btn3 p-lr-10 trans-04 pointer" style="margin-left: 120%;margin-bottom: -2%;height: 121%;width: 8%;padding: 1%;">Add </a>
+          </div>
+  </div>
+         
+
+<table class="table" style="padding-top: 10%;margin-top:1px;height:2.5%">
+  <thead class="thead-dark" >
+
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Address</th>
+      <th scope="col">Place</th>
+      <th scope="col">City</th>
+      <th scope="col">Zip</th>
+      {{!-- <th scope="col">Payment Method</th> --}}
+      <th scope="col">Status</th>
+      {{!-- <th> <a href=""/addaddress"" class="btn btn-primary">Add Address</a></th> --}}
+    </tr>
+  </thead>
+  <tbody>
+    {{#each address}}
+    <tr>
+      {{!-- <th scope="row">{{@index}}</th> --}}
+      <td scope="row" class="pt-4">{{inc @index}}</td>
+      <td>{{this.address}}</td>
+      <td>{{this.place}}</td>
+      <td>{{this.city}}</td>
+      <td>{{this.zip}}</td>
+         <td><a href="/edit-address/{{this._id}}"  class="flex-c-m stext-50 cl0 bg3 bor14 hov-btn3 p-lr-10 trans-04 pointer"  style="height:107%;width:73%">Edit</a></td>
+        <td><a href="/delete-address/{{this._id}}"  class="flex-c-m stext-50 cl0 bg3 bor14 hov-btn3 p-lr-10 trans-04 pointer" style="height:107%;width:63%" >Delete</a></td>
+         </tr>
+   {{/each}}
+  </tbody>
+</table>
+
