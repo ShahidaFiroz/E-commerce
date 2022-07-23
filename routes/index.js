@@ -8,8 +8,13 @@ const { config } = require("process");
 const { count } = require("console");
 const session = require("express-session");
 const { resolve } = require("path");
-const client = require("twilio")(otp.AccountSID, otp.authToken);
+require('dotenv').config()
+const SSID=process.env.serviceSID
+const ASID=process.env.AccountSID
+const AUID=process.env.authToken
+const client = require("twilio")(ASID, AUID);
 const paypal=require('paypal-rest-sdk')
+
 //const Swal = require('sweetalert2');
 //var session= require('express-session')
 const verifyLogin = (req, res, next) => {
@@ -201,7 +206,7 @@ router.post("/verify", (req, res) => {
   var Otp = req.body.otp;
   console.log(Otp);
   client.verify
-    .services(otp.serviceSID)
+    .services(SSID)
     .verificationChecks.create({ to: `+91${Number}`, code: Otp})
     .then((data) => {
      // console.log(data.status);
@@ -240,7 +245,7 @@ router.post("/signup", (req, res) => {
       req.session.phone=req.body.phone
      req.session.userbody=req.body
 
-      client.verify.services(otp.serviceSID).verifications.create({
+      client.verify.services(SSID).verifications.create({
       to:`+91${number}`,channel:"sms",
       }).then((data)=>{
        // console.log(data)
