@@ -9,7 +9,7 @@ const state={
 
 
 module.exports.connect = function(done){
-    const url ='mongodb://0.0.0.0:27017/'
+    const url ='mongodb+srv://shahidafiroz:eoU1dkxGFuSoUdfG@fashionstore.gg20w.mongodb.net/?retryWrites=true&w=majority'
     const dbname='fasionstore'
 
 mongoClient.connect(url,(err,data)=>{
