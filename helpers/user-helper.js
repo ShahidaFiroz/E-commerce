@@ -948,8 +948,8 @@ generatePaypal:(orderId,total)=>{
                 "payment_method": "Paypal"
             },
             "redirect_urls": {
-                "return_url": "https://shahidafiroz.in/success/",
-                "cancel_url": "https://shahidafiroz.in/cancel/"
+                "return_url": "https://www.shahidafiroz.in/success",
+                "cancel_url": "https://www.shahidafiroz.in/cancel"
             },
             "transactions": [{
                 "item_list": {
