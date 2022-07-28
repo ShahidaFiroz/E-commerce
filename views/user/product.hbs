@@ -577,15 +577,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             success:(response)=>{
             if(response.status){
             
-			
+			console.log(response.status)
            swal("Product added !","Product successfully added to Wishlist !","success").then(()=>{
             location.reload()
 		   })
           
             
-            }else{
-				swal("Product is already added to the Wishlist")
-			}
+            }else if(response.status==false)
+			{swal("product already in the wishlist")}
+			else{
+                     location.href='/login'
+				}
+				
+				
+				//
+			
             }
             })
             }
@@ -602,6 +608,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 method:'get',
         
             success:(response)=>{
+				console.log(response)
             if(response.status){
             
 			
@@ -611,11 +618,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		   })
           
             
-            }else{
-				swal("product is there and incremented the quantity").then(()=>{
+            }
+			else{
+				if(response=='1'){
+				location.href='/login'
+				}else{
+				console.log(response)
+				swal("product is already in the cart").then(()=>{
 					location.reload()
 					
 				})
+				}
+				
 			}
             }
             })

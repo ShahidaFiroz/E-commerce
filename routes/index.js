@@ -399,12 +399,18 @@ router.get("/product-detail/:id",verifyLogin, async (req, res) => {
 
 router.get('/wishList/:id',verifyLogin,(req,res)=>{
   //console.log("hhhhhhhh");
-  
+  let userloged = req.session.user;
+  if(userloged)
+  {
     userHelper.addToWishlist(req.params.id,req.session.user._id).then((data)=>{
     //  console.log("hai");
     console.log(data)
     res.json(data)
   })
+}else{
+  //console.log(data)
+  res.json(2)
+}
     })
 
 
@@ -506,11 +512,11 @@ router.get('/wishList/:id',verifyLogin,(req,res)=>{
 
 
 router.get("/wishlist", verifyLogin,async(req, res) => {
-
+  let userloged = req.session.user;
   let products=await userHelper.getWishProducts(req.session.user._id)
  // console.log("@@@@@@@@@@@@@@@@@@@@");
   //console.log(products)
-  let userloged = req.session.user;
+ 
   userHelper.getCartCount(req.session.user._id).then((count)=>{
     userHelper.getWishCount(req.session.user._id).then((wcount)=>{
     // console.log(count)
@@ -520,7 +526,10 @@ router.get("/wishlist", verifyLogin,async(req, res) => {
 })
 })
   
-router.get('/shopping/:id',verifyLogin,(req,res)=>{
+router.get('/shopping/:id',(req,res)=>{
+  let userloged = req.session.user;
+  if(userloged)
+  {
  console.log("hhhhhhhh");
     userHelper.addToCart(req.params.id,req.session.user._id).then((data)=>{
       console.log("params");
@@ -529,6 +538,10 @@ router.get('/shopping/:id',verifyLogin,(req,res)=>{
     console.log(data)
     res.json(data)
     })
+  }else{
+    //console.log(data)
+    res.json(1)
+  }
   })
 
   // router.get('/shop/:id',verifyLogin,(req,res)=>{
